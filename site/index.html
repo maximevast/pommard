@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>pommard.sh — taste a GitHub repository like a fine wine 🍷</title>
+  <meta name="description" content="pommard.sh is a tiny Go CLI that pours any GitHub repository into a five-part wine tasting card — Millésime, Robe, Nez, Bouche, Finale — with a weighted score out of 100." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="pommard.sh — taste a GitHub repository like a fine wine" />
+  <meta property="og:description" content="A tiny Go CLI that pours any GitHub repo into a wine tasting card." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pommard.sh" />
+  <meta property="og:image" content="https://pommard.sh/pommard_sh.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="pommard_sh.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="nav">
+    <a class="nav__brand" href="/">
+      <span>pommard.sh</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#tasting">The card</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/maximevast/pommard">GitHub ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <img class="hero__logo" src="pommard_sh.png" alt="pommard — a bear coding with a glass of wine" width="200" height="200" />
+      <h1 class="hero__title">pommard.sh</h1>
+      <p class="hero__tagline">Taste a GitHub repository like a fine wine.</p>
+      <p class="hero__sub">
+        A tiny command-line sommelier. Point it at any repo and it pours a
+        five-part tasting card — age, languages, polish, activity, reach — and a
+        weighted score out of 100.
+      </p>
+
+      <div class="cmd" data-copy="curl -fsSL https://pommard.sh/install.sh | bash">
+        <code><span class="cmd__prompt">$</span> curl -fsSL https://pommard.sh/install.sh | bash</code>
+        <button class="cmd__copy" type="button" aria-label="Copy install command">Copy</button>
+      </div>
+
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="#install">Install pommard</a>
+        <a class="btn btn--ghost" href="https://github.com/maximevast/pommard">View on GitHub</a>
+      </div>
+    </section>
+
+    <!-- TASTING CARD DEMO -->
+    <section id="tasting" class="demo">
+      <div class="terminal" role="img" aria-label="Example pommard tasting card for polarsource/polar scoring 92 out of 100, Grand cru">
+        <div class="terminal__bar">
+          <span class="dot dot--red"></span>
+          <span class="dot dot--amber"></span>
+          <span class="dot dot--green"></span>
+          <span class="terminal__title">pommard taste polarsource/polar</span>
+        </div>
+        <pre class="terminal__body"><span class="t-head">🍷 pommard · polarsource/polar</span>
+
+<span class="t-title">🍇  Millésime</span>  <span class="badge">En développement</span>
+   <span class="t-key">First commit:</span> 2023   3.4 yrs
+
+<span class="t-title">🎨  Robe</span>  <span class="badge">Structurée</span>
+   <span class="t-key">Cépage:</span> Python 65.9% · TypeScript 27.7% · MDX 3.6%
+   <span class="t-key">Size:</span> 4 510 files   424.3 MB
+
+<span class="t-title">👃  Nez</span>  <span class="badge">Expressif (5/5)</span>
+   <span class="ok">✓</span> README   <span class="ok">✓</span> LICENSE (Apache-2.0)   <span class="ok">✓</span> CI   <span class="ok">✓</span> Topics   <span class="ok">✓</span> Description
+
+<span class="t-title">👄  Bouche</span>  <span class="badge">Puissant</span>
+   <span class="t-key">Commits (90d):</span> 1 822   <span class="t-key">Contributors:</span> 133
+   <span class="t-key">Issues:</span> 71 open / 2 274 closed
+   <span class="t-key">Latest release:</span> 2026-05-25
+
+<span class="t-title">🏁  Finale</span>  <span class="badge">Longue</span>
+   <span class="t-key">⭐ Stars:</span> 9 948   <span class="t-key">Forks:</span> 727   <span class="t-key">Watchers:</span> 26
+   <span class="t-key">Growth:</span> 244.7 stars/mo
+
+<span class="t-title">🏆  Final score</span>
+   <span class="score">92/100</span>  <span class="badge badge--gold">Grand cru</span>
+   <span class="t-dim">Nez 20 · Bouche 40 · Finale 40</span></pre>
+      </div>
+    </section>
+
+    <!-- THE FIVE SECTIONS -->
+    <section class="sections">
+      <h2 class="section-h">Five sips, one verdict</h2>
+      <p class="section-lead">Every card reads the same five things, in the language of the table.</p>
+
+      <div class="grid">
+        <article class="taste">
+          <div class="taste__emoji">🍇</div>
+          <h3>Millésime</h3>
+          <p>The vintage — how old the repo is, from its very first commit.</p>
+          <p class="taste__terms">Jeune · En développement · En pleine maturité · Grand âge</p>
+        </article>
+
+        <article class="taste">
+          <div class="taste__emoji">🎨</div>
+          <h3>Robe</h3>
+          <p>The colour — primary languages and the heft of the codebase.</p>
+          <p class="taste__terms">Légère · Structurée · Complexe</p>
+        </article>
+
+        <article class="taste">
+          <div class="taste__emoji">👃</div>
+          <h3>Nez</h3>
+          <p>The nose — surface polish: README, licence, CI, topics, description.</p>
+          <p class="taste__terms">Fermé · Discret · Ouvert · Expressif</p>
+        </article>
+
+        <article class="taste">
+          <div class="taste__emoji">👄</div>
+          <h3>Bouche</h3>
+          <p>The palate — recent commits, contributors, issue health, releases.</p>
+          <p class="taste__terms">Plat · Souple · Charnu · Puissant</p>
+        </article>
+
+        <article class="taste">
+          <div class="taste__emoji">🏁</div>
+          <h3>Finale</h3>
+          <p>The finish — stars, forks, watchers and how fast the stars pour in.</p>
+          <p class="taste__terms">Courte · Moyenne · Longue · Persistante</p>
+        </article>
+
+        <article class="taste taste--score">
+          <div class="taste__emoji">🏆</div>
+          <h3>Note finale</h3>
+          <p>A weighted score out of 100 — Nez 20, Bouche 40, Finale 40.</p>
+          <p class="taste__terms">Piquette · Correct · Bon cru · Grand cru</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- INSTALL -->
+    <section id="install" class="install">
+      <h2 class="section-h">Pour yourself a glass</h2>
+
+      <div class="install__grid">
+        <div class="install__card">
+          <h3>curl · bash</h3>
+          <div class="cmd cmd--block" data-copy="curl -fsSL https://pommard.sh/install.sh | bash">
+            <code><span class="cmd__prompt">$</span> curl -fsSL https://pommard.sh/install.sh | bash</code>
+            <button class="cmd__copy" type="button" aria-label="Copy command">Copy</button>
+          </div>
+        </div>
+
+        <div class="install__card">
+          <h3>Homebrew <span class="soon">soon</span></h3>
+          <div class="cmd cmd--block" data-copy="brew install maximevast/tap/pommard">
+            <code><span class="cmd__prompt">$</span> brew install maximevast/tap/pommard</code>
+            <button class="cmd__copy" type="button" aria-label="Copy command">Copy</button>
+          </div>
+        </div>
+
+        <div class="install__card">
+          <h3>Go</h3>
+          <div class="cmd cmd--block" data-copy="go install github.com/maximevast/pommard@latest">
+            <code><span class="cmd__prompt">$</span> go install github.com/maximevast/pommard@latest</code>
+            <button class="cmd__copy" type="button" aria-label="Copy command">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="install__then">
+        Then taste anything:
+        <code class="inline">pommard taste polarsource/polar</code>
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <a href="https://github.com/maximevast/pommard">github.com/maximevast/pommard</a>
+      · MIT · poured with 🍷 and Go
+    </p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.cmd').forEach(function (el) {
+      var btn = el.querySelector('.cmd__copy');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(el.dataset.copy || '').then(function () {
+          var prev = btn.textContent;
+          btn.textContent = 'Copied';
+          btn.classList.add('is-copied');
+          setTimeout(function () {
+            btn.textContent = prev;
+            btn.classList.remove('is-copied');
+          }, 1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
