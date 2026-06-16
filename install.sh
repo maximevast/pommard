@@ -94,7 +94,7 @@ main() {
     *":${bindir}:"*) ;;
     *) note "add ${bindir} to your PATH:  export PATH=\"${bindir}:\$PATH\"" ;;
   esac
-  printf '\n  Pour your first glass:\n    %s%s taste charmbracelet/lipgloss%s\n\n' "$C_WINE" "$BINARY" "$C_OFF"
+  printf '\n  Pour your first glass:\n    %s%s taste polarsource/polar%s\n\n' "$C_WINE" "$BINARY" "$C_OFF"
 }
 
 main "$@"

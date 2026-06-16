@@ -29,6 +29,7 @@ body {
     var(--cream);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 a { color: var(--wine); text-decoration: none; }
@@ -128,12 +129,18 @@ a:hover { text-decoration: underline; }
   font-size: 0.92rem;
   padding: 12px 12px 12px 18px;
   border-radius: 12px;
+  width: 100%;
   max-width: 560px;
   margin: 0 auto;
   box-shadow: 0 12px 28px rgba(30, 42, 68, 0.18);
-  overflow: hidden;
 }
-.cmd code { white-space: nowrap; overflow-x: auto; }
+.cmd code {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 .cmd__prompt { color: var(--gold); margin-right: 8px; user-select: none; }
 .cmd__copy {
   margin-left: auto;
@@ -321,6 +328,25 @@ a:hover { text-decoration: underline; }
 .footer a:hover { color: var(--wine); }
 
 @media (max-width: 560px) {
+  .nav { padding: 14px 18px; }
   .nav__links a:not(:last-child) { display: none; }
-  .terminal__body { font-size: 0.74rem; padding: 16px; }
+
+  .hero { padding: 28px 18px 16px; }
+  .hero__logo { width: 148px; height: 148px; }
+  .hero__sub { font-size: 1rem; }
+
+  .hero__actions { flex-direction: column; align-items: stretch; }
+  .hero__actions .btn { text-align: center; }
+
+  .cmd { font-size: 0.82rem; padding: 10px 10px 10px 14px; gap: 8px; }
+  .cmd__copy { padding: 6px 10px; font-size: 0.78rem; }
+
+  .demo { margin-top: 28px; padding: 0 14px; }
+  .terminal__body { font-size: 0.72rem; padding: 16px 14px; line-height: 1.65; }
+
+  .sections,
+  .install { margin-top: 56px; padding: 0 18px; }
+
+  .taste { padding: 20px; }
+  .footer { padding: 48px 18px 36px; }
 }
