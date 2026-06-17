@@ -4,12 +4,17 @@
   "private": true,
   "description": "pommard.sh — landing page + dynamic per-repo tasting cards & OG images",
   "type": "module",
+  "scripts": {
+    "test": "node --import tsx --test lib/scorer.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
     "@vercel/og": "^0.6.5"
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
     "@vercel/node": "^5.0.0",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.0"
   }
 }
