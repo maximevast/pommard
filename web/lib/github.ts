@@ -2,7 +2,7 @@
 // scorer needs. The primary repo call is fatal; secondary calls degrade
 // gracefully so the card still renders when an optional signal is missing.
 
-import type { RepoData } from "./scorer.ts";
+import type { RepoData } from "./scorer";
 
 const API = "https://api.github.com";
 const USER_AGENT = "pommard-web";

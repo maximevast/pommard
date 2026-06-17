@@ -1,8 +1,8 @@
 // GET /{org}/{repo}/og.png  →  1200×630 tasting-card image for link unfurls.
 // Styled to match the landing page's terminal card.
 import { ImageResponse } from "@vercel/og";
-import { fetchRepoData, NotFoundError, RateLimitError } from "../lib/github.ts";
-import { score, type Card } from "../lib/scorer.ts";
+import { fetchRepoData, NotFoundError, RateLimitError } from "../lib/github";
+import { score, type Card } from "../lib/scorer";
 
 export const config = { runtime: "edge" };
 

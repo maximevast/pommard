@@ -1,6 +1,6 @@
 // GET /{org}/{repo}  →  HTML page: full tasting card + og:image meta + actions.
-import { fetchRepoData, NotFoundError, RateLimitError } from "../lib/github.ts";
-import { score, type Card } from "../lib/scorer.ts";
+import { fetchRepoData, NotFoundError, RateLimitError } from "../lib/github";
+import { score, type Card } from "../lib/scorer";
 
 export const config = { runtime: "edge" };
 

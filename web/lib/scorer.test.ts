@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { score, type RepoData } from "./scorer.ts";
+import { score, type RepoData } from "./scorer";
 
 // Pinned "now" so age-dependent maths are deterministic.
 const NOW = new Date("2025-06-17T00:00:00Z");
