@@ -44,7 +44,7 @@ function cardPage(origin: string, c: Card): string {
   const title = `${c.repo} — ${c.score}/100 · ${c.label}`;
   const desc = `${c.repo} tasted like wine: ${c.score}/100 (${c.label}). Millésime ${c.millesime} · Robe ${c.robe} · Nez ${c.nez} · Bouche ${c.bouche} · Finale ${c.finale}.`;
   const tweet =
-    `https://twitter.com/intent/tweet?text=${encodeURIComponent(`🍷 ${c.repo} scored ${c.score}/100 (${c.label}) on pommard.sh`)}&url=${encodeURIComponent(pageUrl)}`;
+     `https://twitter.com/intent/tweet?text=${encodeURIComponent(`🍷 ${c.repo} — tasted like wine: ${c.score}/100 (${c.label})`)}&url=${encodeURIComponent(pageUrl)}`;
 
   return shell(
     title,
