@@ -41,6 +41,13 @@
         weighted score out of 100.
       </p>
 
+      <form class="taste-form" id="taste">
+        <input id="repo-input" type="text" placeholder="owner/repo" autocomplete="off" spellcheck="false" aria-label="GitHub owner/repo" />
+        <button type="submit">Taste 🍷</button>
+      </form>
+
+      <p class="hero__or">or install the CLI</p>
+
       <div class="cmd" data-copy="curl -fsSL https://pommard.sh/install.sh | bash">
         <code><span class="cmd__prompt">$</span> curl -fsSL https://pommard.sh/install.sh | bash</code>
         <button class="cmd__copy" type="button" aria-label="Copy install command">Copy</button>
@@ -152,14 +159,6 @@
         </div>
 
         <div class="install__card">
-          <h3>Homebrew <span class="soon">soon</span></h3>
-          <div class="cmd cmd--block" data-copy="brew install maximevast/tap/pommard">
-            <code><span class="cmd__prompt">$</span> brew install maximevast/tap/pommard</code>
-            <button class="cmd__copy" type="button" aria-label="Copy command">Copy</button>
-          </div>
-        </div>
-
-        <div class="install__card">
           <h3>Go</h3>
           <div class="cmd cmd--block" data-copy="go install github.com/maximevast/pommard@latest">
             <code><span class="cmd__prompt">$</span> go install github.com/maximevast/pommard@latest</code>
@@ -172,6 +171,18 @@
         Then taste anything:
         <code class="inline">pommard taste polarsource/polar</code>
       </p>
+    </section>
+
+    <!-- SELF-HOST -->
+    <section class="selfhost">
+      <h2 class="section-h">Run your own cellar</h2>
+      <p class="section-lead">
+        Want shareable <code class="inline">your-domain/{org}/{repo}</code> cards on your own
+        GitHub quota? Deploy your own instance in a click — just add a <code class="inline">GITHUB_TOKEN</code>.
+      </p>
+      <a class="deploy" href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmaximevast%2Fpommard&root-directory=web&env=GITHUB_TOKEN&envDescription=GitHub%20token%20for%20higher%20API%20rate%20limits&project-name=pommard&repository-name=pommard">
+        <img src="https://vercel.com/button" alt="Deploy with Vercel" height="40" />
+      </a>
     </section>
   </main>
 
@@ -197,6 +208,17 @@
           }, 1400);
         });
       });
+    });
+
+    var form = document.getElementById('taste');
+    if (form) form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = document.getElementById('repo-input').value.trim();
+      v = v.replace(/^https?:\/\/github\.com\//, '').replace(/\.git$/, '').replace(/^\/+|\/+$/g, '');
+      var parts = v.split('/');
+      if (parts.length >= 2 && parts[0] && parts[1]) {
+        location.href = '/' + parts[0] + '/' + parts[1];
+      }
     });
   </script>
 </body>

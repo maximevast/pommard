@@ -58,13 +58,6 @@ Final labels: **Piquette** (0–40) · **Correct** (41–60) · **Bon cru** (61�
 
 ## Install
 
-### Homebrew
-
-```sh
-# placeholder — tap to be published
-brew install maximevast/tap/pommard
-```
-
 ### curl | bash
 
 ```sh

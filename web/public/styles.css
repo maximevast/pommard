@@ -95,6 +95,60 @@ a:hover { text-decoration: underline; }
   margin-top: 22px;
 }
 
+/* ---- taste input (hero) — one unified search pill ---- */
+.taste-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 540px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 6px 6px 22px;
+  box-shadow: 0 10px 28px rgba(124, 45, 64, 0.1);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.taste-form:focus-within {
+  border-color: var(--wine);
+  box-shadow: 0 12px 32px rgba(124, 45, 64, 0.18);
+}
+.taste-form input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 1rem;
+  color: var(--ink);
+  padding: 11px 12px 11px 0;
+}
+.taste-form input::placeholder { color: #b3aab0; }
+.taste-form button {
+  flex: none;
+  border: 0;
+  cursor: pointer;
+  background: var(--wine);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 11px 22px;
+  border-radius: 999px;
+  transition: background 0.15s ease;
+}
+.taste-form button:hover { background: var(--wine-deep); }
+.hero__or {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin: 18px 0 14px;
+}
+
+/* ---- self-host ---- */
+.selfhost { max-width: var(--maxw); margin: 88px auto 0; padding: 0 24px; text-align: center; }
+.deploy { display: inline-block; margin-top: 26px; }
+.deploy:hover { text-decoration: none; }
+
 /* ---- buttons ---- */
 .btn {
   display: inline-block;
@@ -348,5 +402,7 @@ a:hover { text-decoration: underline; }
   .install { margin-top: 56px; padding: 0 18px; }
 
   .taste { padding: 20px; }
+  .taste-form { padding-left: 16px; }
+  .taste-form button { padding: 11px 16px; }
   .footer { padding: 48px 18px 36px; }
 }
