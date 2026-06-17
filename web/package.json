@@ -5,7 +5,6 @@
   "description": "pommard.sh — landing page + dynamic per-repo tasting cards & OG images",
   "type": "module",
   "scripts": {
-    "dev": "vercel dev",
     "test": "node --import tsx --test lib/scorer.test.ts",
     "typecheck": "tsc --noEmit"
   },

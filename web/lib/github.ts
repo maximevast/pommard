@@ -20,6 +20,11 @@ export class RateLimitError extends Error {
   }
 }
 
+// ForbiddenError is a 403 that is NOT rate limiting — typically a token not
+// authorized for an org's SAML SSO. Public data is still readable
+// unauthenticated, so callers can retry without the token.
+export class ForbiddenError extends Error {}
+
 function buildHeaders(token?: string): HeadersInit {
   const h: Record<string, string> = {
     Accept: "application/vnd.github+json",
@@ -53,7 +58,7 @@ async function getRaw(path: string, token?: string): Promise<Raw> {
     if (res.status === 429 || res.headers.get("x-ratelimit-remaining") === "0") {
       throw rateLimitFrom(res, token);
     }
-    throw new Error(`github api: ${res.status}`);
+    throw new ForbiddenError(path);
   }
   if (res.status >= 400) throw new Error(`github api: ${res.status}`);
 
@@ -115,7 +120,21 @@ export async function fetchRepoData(
   token?: string,
 ): Promise<RepoData> {
   // Primary call — fatal on error (404 / rate limit / network).
-  const { body } = await getRaw(`/repos/${owner}/${repo}`, token);
+  // If the org enforces SAML SSO and the token isn't authorized, GitHub
+  // returns 403; public repo data is still readable unauthenticated, so we
+  // drop the token and retry — and use unauth for the rest of the fetch too.
+  let effectiveToken = token;
+  let body: string;
+  try {
+    ({ body } = await getRaw(`/repos/${owner}/${repo}`, effectiveToken));
+  } catch (err) {
+    if (effectiveToken && err instanceof ForbiddenError) {
+      effectiveToken = undefined;
+      ({ body } = await getRaw(`/repos/${owner}/${repo}`, effectiveToken));
+    } else {
+      throw err;
+    }
+  }
   const ar = JSON.parse(body) as ApiRepo;
   const branch = ar.default_branch || "HEAD";
 
@@ -137,18 +156,18 @@ export async function fetchRepoData(
     openIssues,
     closedIssues,
   ] = await Promise.all([
-    soft(() => fetchLanguages(owner, repo, token), {} as Record<string, number>),
-    soft(() => fetchFileCount(owner, repo, branch, token), { count: 0, truncated: false }),
-    soft(() => exists(`/repos/${owner}/${repo}/readme`, token), false),
-    soft(() => fetchHasCI(owner, repo, token), false),
-    soft(() => fetchFirstCommit(owner, repo, token), null as Date | null),
+    soft(() => fetchLanguages(owner, repo, effectiveToken), {} as Record<string, number>),
+    soft(() => fetchFileCount(owner, repo, branch, effectiveToken), { count: 0, truncated: false }),
+    soft(() => exists(`/repos/${owner}/${repo}/readme`, effectiveToken), false),
+    soft(() => fetchHasCI(owner, repo, effectiveToken), false),
+    soft(() => fetchFirstCommit(owner, repo, effectiveToken), null as Date | null),
     soft(() => countViaPagination(
-      `/repos/${owner}/${repo}/commits?per_page=1&since=${since90.toISOString()}`, token), 0),
+      `/repos/${owner}/${repo}/commits?per_page=1&since=${since90.toISOString()}`, effectiveToken), 0),
     soft(() => countViaPagination(
-      `/repos/${owner}/${repo}/contributors?per_page=1&anon=1`, token), 0),
-    soft(() => fetchLatestRelease(owner, repo, token), null as Date | null),
-    soft(() => fetchIssueCount(owner, repo, "open", token), 0),
-    soft(() => fetchIssueCount(owner, repo, "closed", token), 0),
+      `/repos/${owner}/${repo}/contributors?per_page=1&anon=1`, effectiveToken), 0),
+    soft(() => fetchLatestRelease(owner, repo, effectiveToken), null as Date | null),
+    soft(() => fetchIssueCount(owner, repo, "open", effectiveToken), 0),
+    soft(() => fetchIssueCount(owner, repo, "closed", effectiveToken), 0),
   ]);
 
   let primaryLanguage = ar.language ?? "";
