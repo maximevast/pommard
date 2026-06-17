@@ -1,0 +1,22 @@
+{
+  "name": "pommard-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "pommard.sh — landing page + dynamic per-repo tasting cards & OG images",
+  "type": "module",
+  "scripts": {
+    "test": "node --import tsx --test lib/scorer.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vercel/og": "^0.6.5",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@vercel/node": "^5.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.0"
+  }
+}

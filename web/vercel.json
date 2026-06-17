@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/:org/:repo/og.png", "destination": "/api/og?org=:org&repo=:repo" },
+    { "source": "/:org/:repo", "destination": "/api/card?org=:org&repo=:repo" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(card|og)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=21600, stale-while-revalidate=86400"
+        }
+      ]
+    }
+  ]
+}
